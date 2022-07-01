@@ -12,15 +12,18 @@ class: center, middle
 --
 - Combining building blocks via algebraic operations.
 --
-- Defining visualizations graphically.
+- Feature overview.
+--
+- Defining visualizations with a UI.
 
 ---
 
 ### From data to visualization
 
-<p class="width-half">
-  Representing data graphically is a ubiquitous problems. While a wide array of different visualizations exists, many plots follow a similar procedure.
-</p>
+Representing data graphically is a ubiquitous problems.
+  
+While a wide array of different visualizations exists,
+<br>many plots follow a similar procedure.
 
 --
 
@@ -43,6 +46,66 @@ class: center, middle
 --
 
 <p class="width-half"><b>Key observation:</b> the two layers (scatter and lines) share a lot of information.</p>
+
+---
+
+### Philosophy
+
+AlgebraOfGraphics is a language for data visualization (based on Makie).
+
+#### Aims
+
+- Translate questions about data into relevant visualizations *declaratively*.
+--
+- Remove cognitive overhead via opinionated defaults.
+--
+- Support predefined as well as custom analyses, transformations, and plotting recipes.
+--
+- Encourage user to define and reuse their own custom building blocks.
+--
+- Create complex plots from basic building blocks via `*` and `+` operations.
+
+---
+
+### How does AlgebraOfGraphics work?
+
+```@setup introplot
+mkpath("assets") # hide
+using AlgebraOfGraphics, CairoMakie # hide
+set_aog_theme!() # hide
+CairoMakie.activate!(type="svg") # hide
+using PalmerPenguins, DataFrames # hide
+penguins = dropmissing(DataFrame(PalmerPenguins.load())) # hide
+```
+
+.width-two-thirds.float-left[
+
+```@example introplot
+# tabular dataset
+dataset = data(penguins)
+
+# graphically encode bill size (converted to centimeters)
+bill_encoding = mapping(
+    :bill_length_mm => (t -> t / 10) => "bill length (cm)",
+    :bill_depth_mm => (t -> t / 10) => "bill depth (cm)"
+)
+
+# `*` combines information
+plt = dataset * bill_encoding
+
+# additional layout customization
+draw(
+    plt,
+    axis = (width = 225, height = 225)
+)
+save("assets/exampleplotscatterpartial.svg", current_figure()) # hide
+```
+
+]
+
+--
+
+<img src="assets/exampleplotscatterpartial.svg" alt="" class="float-left plot">
 
 ---
 
@@ -70,17 +133,17 @@ bill_encoding = mapping(
 )
 
 # mappings specific to the scatter plot
-scatter_encoding = mapping(
+scatter_layer = mapping(
     color = :body_mass_g => (t -> t / 1000) => "body mass (kg)",
     marker = :species
 )
 
 # `*` combines information
-scatter_layer = dataset * bill_encoding * scatter_encoding
+plt = dataset * bill_encoding * scatter_layer
 
 # additional layout customization
 draw(
-    scatter_layer,
+    plt,
     axis = (width = 225, height = 225),
     legend = (position = :top,)
 )
@@ -88,8 +151,6 @@ save("assets/exampleplotscatter.svg", current_figure()) # hide
 ```
 
 ]
-
---
 
 <img src="assets/exampleplotscatter.svg" alt="" class="float-left plot">
 
@@ -108,15 +169,15 @@ bill_encoding = mapping(
     :bill_depth_mm => (t -> t / 10) => "bill depth (cm)"
 )
 
-# mappings specific to the lines plot
-lines_encoding = mapping(group = :species)
+# settings specific to the lines plot
+lines_layer = mapping(group = :species) * linear()
 
 # `*` combines information
-lines_layer = dataset * bill_encoding * lines_encoding * linear()
+plt = dataset * bill_encoding * lines_layer
 
 # additional layout customization
 draw(
-    lines_layer,
+    plt,
     axis = (width = 225, height = 225)
 )
 save("assets/exampleplotlines.svg", current_figure()) # hide
@@ -135,7 +196,13 @@ save("assets/exampleplotlines.svg", current_figure()) # hide
 .width-two-thirds.float-left[
 
 ```@example introplot
-plt = scatter_layer + lines_layer # `+` overlays layers
+# `+` overlays layers
+layers = scatter_layer + lines_layer
+
+# `*` combines information
+plt = dataset * bill_encoding * layers
+
+# additional layout customization
 draw(
     plt,
     axis = (width = 225, height = 225),
@@ -149,3 +216,73 @@ save("assets/exampleplot.svg", current_figure()) # hide
 --
 
 <img src="assets/exampleplot.svg" alt="" class="float-left plot">
+
+---
+
+count: false
+
+### How does AlgebraOfGraphics work?
+
+.width-two-thirds.float-left[
+
+```@example introplot
+# `+` overlays layers
+layers = scatter_layer + lines_layer * visual(color = :slategray)
+
+# `*` combines information
+plt = dataset * bill_encoding * layers
+
+# additional layout customization
+draw(
+    plt,
+    axis = (width = 225, height = 225),
+    legend = (position = :top,)
+)
+save("assets/exampleplotalpha.svg", current_figure()) # hide
+```
+
+]
+
+<img src="assets/exampleplotalpha.svg" alt="" class="float-left plot">
+
+---
+
+### (Slightly optimistic) feature overview
+
+- Support all Makie.jl plot recipes.
+--
+- Support predefined and custom analyses.
+--
+- Support all Tables.jl-compatible dataset, in long or wide format.
+--
+- Full theme, layout and legend customization.
+--
+- Support data from a broad variety of fields (time series, geographic data, etc.).
+--
+- Simplified plot generation via a UI (collaboration with Mattia Bergomi at BVR — build sustainably).
+
+---
+
+### Thank you!
+
+<h4>Learn more</h4>
+
+<div class="width-half float-left">
+  <h4>Makie</h4>
+  <a href="https://makie.juliaplots.org/stable/">
+    <p>https://makie.juliaplots.org/stable/</p>
+    <img src="assets/makie-logo.svg" style="height:4em">
+  </a>
+</div>
+
+<div class="width-half float-right">
+  <h4>AlgebraOfGraphics</h4>
+  <a href="http://juliaplots.org/AlgebraOfGraphics.jl/stable/">
+    <p>http://juliaplots.org/AlgebraOfGraphics.jl/stable/</p>
+    <img src="assets/aog-logo.svg" style="height:4em">
+  </a>
+</div>
+
+<div style="margin-top: 15em;">
+<b>Financial support: </b><img src="assets/pumas-logo.svg" class="inline-img"> and Veos Digital <img src="assets/veos-digital-logo.png" class="inline-img">.
+</div>

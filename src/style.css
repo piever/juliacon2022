@@ -95,3 +95,13 @@ th, td {
   max-width: 40%;
   margin-left: 0.5em;
 }
+
+.inline-img {
+  vertical-align: bottom;
+  height: 1.2em;
+}
+
+.footer {
+  position: absolute;
+  bottom: 12px;
+}
