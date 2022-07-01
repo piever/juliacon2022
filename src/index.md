@@ -38,32 +38,114 @@ class: center, middle
 
 --
 
-<img src="assets/example_plot.svg" alt="" class="width-half float-right">
+<img src="assets/exampleplot.svg" alt="" class="float-right plot">
 
 --
 
-<p class="width-half float-right"><b>Key observation:</b> the two layers (scatter and lines) share a lot of information.</p>
+<p class="width-half"><b>Key observation:</b> the two layers (scatter and lines) share a lot of information.</p>
 
 ---
 
 ### How does AlgebraOfGraphics work?
 
-#### Building blocks
-
-```@example
+```@setup introplot
+mkpath("assets") # hide
 using AlgebraOfGraphics, CairoMakie # hide
+set_aog_theme!() # hide
+CairoMakie.activate!(type="svg") # hide
 using PalmerPenguins, DataFrames # hide
 penguins = dropmissing(DataFrame(PalmerPenguins.load())) # hide
-dataset = data(penguins) # tabular dataset
+```
+
+.width-two-thirds.float-left[
+
+```@example introplot
+# tabular dataset
+dataset = data(penguins)
+
+# graphically encode bill size (converted to centimeters)
 bill_encoding = mapping(
     :bill_length_mm => (t -> t / 10) => "bill length (cm)",
     :bill_depth_mm => (t -> t / 10) => "bill depth (cm)"
-) # graphically encode bill size (converted to centimeters)
+)
+
+# mappings specific to the scatter plot
 scatter_encoding = mapping(
     color = :body_mass_g => (t -> t / 1000) => "body mass (kg)",
-    species = :species
-) # mappings specific to the scatter plot
-plottype = visual(Scatter)
-scatter_layer = dataset * bill_encoding * scatter_encoding * plottype
-draw(scatter_layer)
+    marker = :species
+)
+
+# `*` combines information
+scatter_layer = dataset * bill_encoding * scatter_encoding
+
+# additional layout customization
+draw(
+    scatter_layer,
+    axis = (width = 225, height = 225),
+    legend = (position = :top,)
+)
+save("assets/exampleplotscatter.svg", current_figure()) # hide
 ```
+
+]
+
+--
+
+<img src="assets/exampleplotscatter.svg" alt="" class="float-left plot">
+
+---
+
+### How does AlgebraOfGraphics work?
+
+.width-two-thirds.float-left[
+```@example introplot
+# tabular dataset
+dataset = data(penguins)
+
+# graphically encode bill size (converted to centimeters)
+bill_encoding = mapping(
+    :bill_length_mm => (t -> t / 10) => "bill length (cm)",
+    :bill_depth_mm => (t -> t / 10) => "bill depth (cm)"
+)
+
+# mappings specific to the lines plot
+lines_encoding = mapping(group = :species)
+
+# `*` combines information
+lines_layer = dataset * bill_encoding * lines_encoding * linear()
+
+# additional layout customization
+draw(
+    lines_layer,
+    axis = (width = 225, height = 225)
+)
+save("assets/exampleplotlines.svg", current_figure()) # hide
+```
+]
+
+--
+
+<img src="assets/exampleplotlines.svg" alt="" class="float-left plot">
+
+
+---
+
+### How does AlgebraOfGraphics work?
+
+.width-two-thirds.float-left[
+
+```@example introplot
+plt = scatter_layer + lines_layer # `+` overlays layers
+draw(
+    plt,
+    axis = (width = 225, height = 225),
+    legend = (position = :top,)
+)
+save("assets/exampleplot.svg", current_figure()) # hide
+```
+
+]
+
+--
+
+<img src="assets/exampleplot.svg" alt="" class="float-left plot">

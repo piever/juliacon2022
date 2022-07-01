@@ -973,7 +973,7 @@ version = "0.3.0"
 
 [[deps.Remark]]
 deps = ["BinaryProvider", "DefaultApplication", "Documenter", "DocumenterMarkdown", "Glob", "JSON", "Literate", "Random"]
-git-tree-sha1 = "3f60840457bd774ff0273712b03129e27297bf9d"
+path = "C:\\Users\\pietro\\.julia\\dev\\Remark"
 uuid = "79b45036-8e38-5d04-8f49-b9fb23ff5a0d"
 version = "0.3.2"
 

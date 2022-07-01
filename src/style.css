@@ -60,9 +60,9 @@ h1, h2, h3 {
 }
 .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
 
-.width-half {max-width: 48%;}
-.width-one-third {max-width: 30%;}
-.width-two-thirds {max-width: 60%;}
+.width-half {width: 48%;}
+.width-one-third {width: 30%;}
+.width-two-thirds {width: 60%;}
 
 .float-left  {float: left; }
 .float-right  {float: right; }
@@ -89,4 +89,9 @@ th, td {
 .item-large {
   flex: 0 0 auto;
   width: 60%; /* default auto */
+}
+
+.plot {
+  max-width: 40%;
+  margin-left: 0.5em;
 }
