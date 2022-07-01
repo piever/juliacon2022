@@ -1,0 +1,92 @@
+/* Lora used for body */
+@font-face{
+  font-family: 'Lora';
+  src: url('fonts/Lora/Lora-Regular.ttf');
+}
+@font-face{
+  font-family: 'Lora';
+  src: url('fonts/Lora/Lora-Bold.ttf');
+  font-weight: bold;
+}
+@font-face{
+  font-family: 'Lora';
+  src: url('fonts/Lora/Lora-Italic.ttf');
+  font-style: italic;
+}
+@font-face{
+  font-family: 'Lora';
+  src: url('fonts/Lora/Lora-BoldItalic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Yanone Kaffeesatz used for h1, h2, h3 */
+@font-face{
+  font-family: 'Yanone Kaffeesatz';
+  src: url('fonts/Yanone_Kaffeesatz/YanoneKaffeesatz-Regular.ttf');
+}
+@font-face{
+  font-family: 'Yanone_Kaffeesatz';
+  src: url('fonts/Yanone_Kaffeesatz/YanoneKaffeesatz-Bold.ttf');
+  font-weight: bold;
+}
+
+/* Ubuntu Mono used for code, do we need Italic for code ? */
+@font-face{
+  font-family: 'Ubuntu Mono';
+  src: url('fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf');
+}
+@font-face{
+  font-family: 'Ubuntu Mono';
+  src: url('fonts/Ubuntu_Mono/UbuntuMono-Bold.ttf');
+  font-weight: bold;
+}
+@font-face{
+  font-family: 'Ubuntu Mono';
+  src: url('fonts/Ubuntu_Mono/UbuntuMono-Italic.ttf');
+  font-style: italic;
+}
+@font-face{
+  font-family: 'Ubuntu Mono';
+  src: url('fonts/Ubuntu_Mono/UbuntuMono-BoldItalic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+body { font-family: 'Lora'; }
+h1, h2, h3 {
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+}
+.remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+.width-half {max-width: 48%;}
+.width-one-third {max-width: 30%;}
+.width-two-thirds {max-width: 60%;}
+
+.float-left  {float: left; }
+.float-right  {float: right; }
+
+th, td {
+  padding: 10px;
+}
+
+.container {
+  display: flex; /* or inline-flex */
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.container > *:not(:last-child) {
+  margin-right: 5rem;
+}
+
+.item-small {
+  flex: 0 0 auto;
+  width: 30%; /* default auto */
+}
+
+.item-large {
+  flex: 0 0 auto;
+  width: 60%; /* default auto */
+}
