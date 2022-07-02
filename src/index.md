@@ -50,7 +50,7 @@ While a wide array of different visualizations exists,
 
 ---
 
-### Philosophy
+### Philosophy of AlgebraOfGraphics
 
 AlgebraOfGraphics is a language for data visualization (based on Makie).
 
@@ -62,7 +62,7 @@ AlgebraOfGraphics is a language for data visualization (based on Makie).
 --
 - Support predefined as well as custom analyses, transformations, and plotting recipes.
 --
-- Encourage user to define and reuse their own custom building blocks.
+- Encourage users to define and reuse their own custom building blocks.
 --
 - Create complex plots from basic building blocks via `*` and `+` operations.
 
@@ -240,22 +240,6 @@ save("assets/exampleplotalpha.svg", current_figure()) # hide
 ]
 
 <img src="assets/exampleplotalpha.svg" alt="" class="float-left plot">
-
----
-
-### (Slightly optimistic) feature overview
-
-- Support all Makie.jl plot recipes.
---
-- Support predefined and custom analyses.
---
-- Support all Tables.jl-compatible dataset, in long or wide format.
---
-- Full theme, layout and legend customization.
---
-- Support data from a broad variety of fields (time series, geographic data, etc.).
---
-- Simplified plot generation via a GUI (ongoing collaboration with Mattia Bergomi).
 
 ---
 
