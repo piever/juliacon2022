@@ -245,10 +245,10 @@ save("assets/exampleplotalpha.svg", current_figure()) # hide
 
 ### Thank you!
 
-<h4>Learn more</h4>
+<h4 style="margin-bottom: 0;">Learn more</h4>
 
 <div class="width-half float-left">
-  <h4>Makie</h4>
+  <h4 style="margin-bottom: 0;">Makie</h4>
   <a href="https://makie.juliaplots.org/stable/">
     <p>https://makie.juliaplots.org/stable/</p>
     <img src="assets/makie-logo.svg" style="height:4em">
@@ -256,13 +256,21 @@ save("assets/exampleplotalpha.svg", current_figure()) # hide
 </div>
 
 <div class="width-half float-right">
-  <h4>AlgebraOfGraphics</h4>
+  <h4 style="margin-bottom: 0;">AlgebraOfGraphics</h4>
   <a href="http://juliaplots.org/AlgebraOfGraphics.jl/stable/">
     <p>http://juliaplots.org/AlgebraOfGraphics.jl/stable/</p>
     <img src="assets/aog-logo.svg" style="height:4em">
   </a>
 </div>
 
-<div style="margin-top: 18em;">
+<div style="margin-top: 11em;">
+  <h4 style="margin-bottom: 0;">DashiBoard</h4>
+  <a href="https://github.com/BeaverResearch/DashiBoard.jl">
+    <p>https://github.com/BeaverResearch/DashiBoard.jl</p>
+  </a>
+  <p>Ongoing collaboration with Mattia Bergomi.</p>
+</div>
+
+<div style="position: absolute; bottom: 0; margin-bottom: 1em;">
 <b>Financial support: </b><img src="assets/pumas-logo.svg" class="inline-img"> and Veos Digital <img src="assets/veos-digital-logo.png" class="inline-img">.
 </div>
