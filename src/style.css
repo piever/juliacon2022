@@ -20,6 +20,16 @@
   font-style: italic;
 }
 
+@font-face{
+  font-family: 'Quattrocento Sans';
+  src: url('fonts/QuattrocentoSans/QuattrocentoSans-Regular.ttf');
+}
+@font-face{
+  font-family: 'Quattrocento Sans';
+  src: url('fonts/QuattrocentoSans/QuattrocentoSans-Bold.ttf');
+  font-weight: bold;
+}
+
 /* Yanone Kaffeesatz used for h1, h2, h3 */
 @font-face{
   font-family: 'Yanone Kaffeesatz';
@@ -53,11 +63,22 @@
   font-style: italic;
 }
 
-body { font-family: 'Lora'; }
+body {
+  font-family: 'Quattrocento Sans';
+  color: #2E2E2E;
+}
+
 h1, h2, h3 {
   font-family: 'Yanone Kaffeesatz';
   font-weight: normal;
+  color: #2E2E2E;
 }
+
+h4 {
+  color: #2E2E2E;
+}
+
+.remark-slide-content{background-color: GhostWhite;}
 .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
 
 .width-half {width: 48%;}
@@ -69,6 +90,11 @@ h1, h2, h3 {
 
 th, td {
   padding: 10px;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
 }
 
 .container {

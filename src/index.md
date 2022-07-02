@@ -1,5 +1,6 @@
 class: center, middle
 # Data Analysis and Visualization with AlgebraOfGraphics
+## Pietro Vertechi - JuliaCon 2022
 ---
 
 ### Structure
@@ -12,16 +13,12 @@ class: center, middle
 --
 - Combining building blocks via algebraic operations.
 --
-- Feature overview.
---
-- Defining visualizations with a UI.
+- Gallery and GUI showcase.
 
 ---
 
-### From data to visualization
+### From data to visualization: representing data graphically
 
-Representing data graphically is a ubiquitous problems.
-  
 While a wide array of different visualizations exists,
 <br>many plots follow a similar procedure.
 
@@ -29,14 +26,18 @@ While a wide array of different visualizations exists,
 
 <ol class="width-half float-left">
   <li>Group and process the data.</li>
+  <br>
   <li>Encode graphically
     <ul>
       <li>categorical variables (color palette, marker shape, line style, etc.),</li>
       <li>continuous quantities (x, y position, marker size, color gradient, etc.).</li>
     </ul>
   </li>
+  <br>
   <li>Select a plot type and theme some plot attributes.</li>
+  <br>
   <li>Finally, combine many such plots to generate a complex figure.</li>
+  <br>
 </ol>
 
 --
@@ -57,7 +58,7 @@ AlgebraOfGraphics is a language for data visualization (based on Makie).
 
 - Translate questions about data into relevant visualizations *declaratively*.
 --
-- Remove cognitive overhead via opinionated defaults.
+- Remove cognitive overhead via opinionated graphical defaults and broad data format support.
 --
 - Support predefined as well as custom analyses, transformations, and plotting recipes.
 --
@@ -70,12 +71,16 @@ AlgebraOfGraphics is a language for data visualization (based on Makie).
 ### How does AlgebraOfGraphics work?
 
 ```@setup introplot
-mkpath("assets") # hide
-using AlgebraOfGraphics, CairoMakie # hide
-set_aog_theme!() # hide
-CairoMakie.activate!(type="svg") # hide
-using PalmerPenguins, DataFrames # hide
-penguins = dropmissing(DataFrame(PalmerPenguins.load())) # hide
+mkpath("assets")
+using AlgebraOfGraphics, CairoMakie
+bg = (backgroundcolor=:transparent,)
+theme = Theme(AlgebraOfGraphics.aog_theme())
+update_theme!(theme; Axis=bg, bg...)
+set_theme!(theme)
+
+CairoMakie.activate!(type="svg")
+using PalmerPenguins, DataFrames
+penguins = dropmissing(DataFrame(PalmerPenguins.load()))
 ```
 
 .width-two-thirds.float-left[
@@ -110,15 +115,6 @@ save("assets/exampleplotscatterpartial.svg", current_figure()) # hide
 ---
 
 ### How does AlgebraOfGraphics work?
-
-```@setup introplot
-mkpath("assets") # hide
-using AlgebraOfGraphics, CairoMakie # hide
-set_aog_theme!() # hide
-CairoMakie.activate!(type="svg") # hide
-using PalmerPenguins, DataFrames # hide
-penguins = dropmissing(DataFrame(PalmerPenguins.load())) # hide
-```
 
 .width-two-thirds.float-left[
 
@@ -259,7 +255,7 @@ save("assets/exampleplotalpha.svg", current_figure()) # hide
 --
 - Support data from a broad variety of fields (time series, geographic data, etc.).
 --
-- Simplified plot generation via a UI (collaboration with Mattia Bergomi at BVR — build sustainably).
+- Simplified plot generation via a GUI (ongoing collaboration with Mattia Bergomi).
 
 ---
 
@@ -283,6 +279,6 @@ save("assets/exampleplotalpha.svg", current_figure()) # hide
   </a>
 </div>
 
-<div style="margin-top: 15em;">
+<div style="margin-top: 18em;">
 <b>Financial support: </b><img src="assets/pumas-logo.svg" class="inline-img"> and Veos Digital <img src="assets/veos-digital-logo.png" class="inline-img">.
 </div>
